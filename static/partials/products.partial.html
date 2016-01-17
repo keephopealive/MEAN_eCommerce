@@ -1,0 +1,34 @@
+<h1>Product</h1>
+<div class="row">
+	<div class="col-xs-6">
+		
+	</div>	
+
+	<div class="col-xs-6">
+		<span ng-bind="productsCtrl.cartSize"></span> item(s). <br>
+		Total: <span ng-bind="productsCtrl.grandtotal | currency:symbol"></span> 
+	</div>	
+</div>
+
+<div class='row'>
+	<div class="col-xs-12">
+		<button 
+			ng-disabled="productsCtrl.currentPage == 0" 
+			ng-click="productsCtrl.currentPageDecrement()" 
+			class="btn btn-default">
+			Previous
+		</button>
+		<span ng-bind="productsCtrl.currentPage+1"></span>/<span ng-bind="productsCtrl.numberOfPages()"></span>
+		<button 
+			ng-disabled="productsCtrl.currentPage >= productsCtrl.products.length/productsCtrl.pageSize - 1" 
+			ng-click="productsCtrl.currentPageIncrement()" 
+			class="btn btn-default">
+			Next
+		</button>
+	</div>
+
+	<product-block 
+		class='col-xs-12 col-sm-6 col-md-4' 
+		ng-repeat="product in productsCtrl.products | startFrom:productsCtrl.currentPage*productsCtrl.pageSize | limitTo:productsCtrl.pageSize">
+	</product-block>
+</div>

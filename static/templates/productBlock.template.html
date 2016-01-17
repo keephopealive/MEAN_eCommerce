@@ -1,0 +1,4 @@
+<h3 ng-bind="product.title"></h3>
+<p ng-bind="product.description"></p>
+<span ng-bind="product.price | currency:symbol"></span>
+<a class="btn btn-success btn-xs" href ng-click="productsCtrl.addToCart(product)">Add to Cart</a>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Index</title>
+	<link rel="stylesheet" type="text/css" href="/css/lib/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/css/index.css">
+	<script type="text/javascript" src="/js/lib/angular.js"></script>
+	<script type="text/javascript" src="/js/lib/angular-uiRouter.js"></script>
+	<script type="text/javascript">
+
+var myAppObj = angular.module('myApp', ['ui.router']);
+myAppObj.config(function($stateProvider, $urlRouterProvider){
+	$urlRouterProvider.otherwise("/");
+
+	$stateProvider
+	.state('products', {
+		url: '/products',
+		templateUrl: '/partials/products.partial.html',
+		controller: 'ProductsController',
+		controllerAs: 'productsCtrl'
+	})
+	.state('cart', {
+		url: '/cart',
+		templateUrl: '/partials/cart.partial.html',
+		controller: 'CartController',
+		controllerAs: 'cartCtrl'
+	});
+
+})
+
+
+.filter('startFrom', function() {
+
+    return function(input, start) {
+        start = +start; //parse to int
+        if(start)
+            return input.slice(start);
+        else
+            return input
+    }
+})
+		
+
+	</script>
+	<script type="text/javascript" src="/js/product.angular.js"></script>
+	<script type="text/javascript" src="/js/cart.angular.js"></script>
+</head>
+<body>
+	<div class='container-fluid'>
+		<div class='row'>
+			<div class="col-xs-12">
+
+				<h1>Index Page</h1>
+				<a href="#/products">Products</a>
+				<a href="#/cart">Cart</a>
+
+			</div>
+		</div>
+		<div class='row'>
+			<div class="col-xs-12">
+
+				<ui-view></ui-view>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>
